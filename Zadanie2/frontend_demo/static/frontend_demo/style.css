@@ -1,0 +1,71 @@
+/* --- Podstawowe style --- */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f3f4f6;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #2b6cb0;
+    color: white;
+    text-align: center;
+    padding: 1em;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+nav a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+footer {
+    background-color: #2b6cb0;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+/* --- Responsywność --- */
+@media (max-width: 600px) {
+    nav {
+        flex-direction: column;  /* menu pionowo */
+        align-items: center;
+    }
+
+    nav a {
+        margin: 5px 0; /* odstępy pionowe między linkami */
+    }
+
+    header, main, footer {
+        padding: 10px; /* mniejsze marginesy na małych ekranach */
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    h2 {
+        font-size: 1.2em;
+    }
+
+    p {
+        font-size: 1em;
+    }
+}
