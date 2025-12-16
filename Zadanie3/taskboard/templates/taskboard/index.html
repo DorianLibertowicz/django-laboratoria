@@ -1,0 +1,42 @@
+<h1>TaskBoard</h1>
+<form id="task-form">
+    <input type="text" id="task-title" placeholder="Nowe zadanie">
+    <button type="submit">Dodaj</button>
+</form>
+<ul id="task-list"></ul>
+
+<script>
+async function fetchTasks() {
+    const res = await fetch('/api/tasks/');
+    const tasks = await res.json();
+    const ul = document.getElementById('task-list');
+    ul.innerHTML = '';
+    tasks.forEach(task => {
+        const li = document.createElement('li');
+        li.textContent = task.title + (task.completed ? ' ✔' : '');
+        li.addEventListener('click', async () => {
+            await fetch(`/api/tasks/${task.id}/`, {
+                method: 'PATCH',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({completed: !task.completed})
+            });
+            fetchTasks();
+        });
+        ul.appendChild(li);
+    });
+}
+
+document.getElementById('task-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const title = document.getElementById('task-title').value;
+    await fetch('/api/tasks/', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({title})
+    });
+    document.getElementById('task-title').value = '';
+    fetchTasks();
+});
+
+fetchTasks();
+</script>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisitCounter</title>
+</head>
+<body>
+    <h1>Ta strona została odwiedzona {{ visit_count }} razy.</h1>
+    <button id="click-btn">Kliknij mnie!</button>
+    <p>Kliknięcia: <span id="click-count">0</span></p>
+    <script>
+        let count = 0;
+        document.getElementById("click-btn").addEventListener("click", () => {
+            count++;
+            document.getElementById("click-count").textContent = count;
+        });
+    </script>
+</body>
+</html>
