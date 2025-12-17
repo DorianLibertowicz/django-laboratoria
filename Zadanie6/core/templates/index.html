@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Zadanie 6 - Fetch API</title>
+</head>
+<body>
+    <h1>Komunikacja Frontend-Backend</h1>
+    
+    <input id="nameInput" placeholder="Podaj imię" />
+    <button onclick="send()">Wyślij</button>
+    
+    <p id="result" style="font-weight: bold; color: blue;"></p>
+
+    <script>
+        async function send() {
+            const nameInput = document.getElementById('nameInput');
+            const resultElement = document.getElementById('result');
+            const name = nameInput.value;
+
+            try {
+                // Wysyłamy zapytanie do naszego API w Django
+                const res = await fetch(`/api/greet/?name=${name}`);
+                const data = await res.json();
+
+                // Wyświetlamy odpowiedź z JSONa na stronie
+                resultElement.innerText = data.message;
+            } catch (error) {
+                resultElement.innerText = "Błąd połączenia!";
+                console.error(error);
+            }
+        }
+    </script>
+</body>
+</html>
