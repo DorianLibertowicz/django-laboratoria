@@ -1,0 +1,7 @@
+<h2>Formularz Książki</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Zapisz</button>
+</form>
+<a href="{% url 'book_list' %}">Powrót</a>

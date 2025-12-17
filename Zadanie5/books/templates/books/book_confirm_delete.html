@@ -1,0 +1,6 @@
+<h2>Czy na pewno usunąć "{{ object.title }}"?</h2>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">TAK, USUŃ</button>
+</form>
+<a href="{% url 'book_list' %}">Anuluj</a>

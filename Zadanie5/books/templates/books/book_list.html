@@ -1,0 +1,17 @@
+<h2>Lista Książek</h2>
+<form method="GET">
+    <input type="text" name="author" placeholder="Filtruj po autorze">
+    <button type="submit">Szukaj</button>
+</form>
+<br>
+<a href="{% url 'book_add' %}">Dodaj nową książkę</a>
+<hr>
+<ul>
+    {% for book in books %}
+    <li>
+        {{ book.title }} - {{ book.author }} ({{ book.publication_date }})
+        [<a href="{% url 'book_edit' book.pk %}">Edytuj</a>]
+        [<a href="{% url 'book_delete' book.pk %}">Usuń</a>]
+    </li>
+    {% endfor %}
+</ul>
